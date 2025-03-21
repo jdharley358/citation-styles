@@ -96,16 +96,6 @@
       </if>
     </choose>
   </macro>
-  <macro name="accessed-date">
-    <choose>
-      <if variable="URL">
-        <group prefix="[" suffix="]" delimiter=" ">
-          <text term="cited" text-case="lowercase"/>
-          <date variable="accessed" form="text"/>
-        </group>
-      </if>
-    </choose>
-  </macro>
   <macro name="container-title">
     <choose>
       <if type="article-journal article-magazine chapter paper-conference article-newspaper review review-book entry-dictionary entry-encyclopedia" match="any">
@@ -120,7 +110,6 @@
           </choose>
           <choose>
             <if variable="URL">
-              <text term="internet" prefix="[" suffix="]" text-case="capitalize-first"/>
             </if>
           </choose>
         </group>
@@ -169,7 +158,6 @@
       <if type="article-journal article-magazine chapter paper-conference article-newspaper review review-book entry-dictionary entry-encyclopedia" match="none">
         <choose>
           <if variable="URL">
-            <text term="internet" prefix=" [" suffix="]" text-case="capitalize-first"/>
           </if>
         </choose>
         <text macro="edition" prefix=". "/>
@@ -199,7 +187,6 @@
       <if type="article-journal article-magazine article-newspaper review review-book" match="any">
         <group suffix=";" delimiter=" ">
           <date variable="issued" form="text"/>
-          <text macro="accessed-date"/>
         </group>
       </if>
       <else-if type="bill legislation" match="any">
@@ -218,7 +205,6 @@
           <date-part name="year"/>
           <date-part name="month" form="short" strip-periods="true"/>
         </date>
-        <text macro="accessed-date" prefix=" "/>
       </else-if>
       <else-if type="patent">
         <group suffix=".">
@@ -228,7 +214,6 @@
               <date-part name="year"/>
             </date>
           </group>
-          <text macro="accessed-date" prefix=" "/>
         </group>
       </else-if>
       <else-if type="speech">
@@ -239,7 +224,6 @@
               <date-part name="month" form="short" strip-periods="true"/>
               <date-part name="day"/>
             </date>
-            <text macro="accessed-date"/>
           </group>
           <text variable="event-place"/>
         </group>
@@ -249,7 +233,6 @@
           <date variable="issued">
             <date-part name="year"/>
           </date>
-          <text macro="accessed-date" prefix=" "/>
         </group>
       </else>
     </choose>
